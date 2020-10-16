@@ -22,12 +22,19 @@ public class TestSystem2 extends SystemBase {
         while (true) {
             if (_gamepad.b) {
                 _systemMotors.get("someMotor").setPower(1);
-                try {
-                    Thread.sleep(1000);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
+                Sleep(5000);
             }
+            else {
+                _systemMotors.get("someMotor").setPower(0);
+            }
+        }
+    }
+
+    private void Sleep(long millis) {
+        try {
+            Thread.sleep(millis);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
         }
     }
 }

@@ -18,7 +18,7 @@ public class RobotGamePad extends LinearOpMode {
 
     private ElapsedTime runtime = new ElapsedTime();
 
-    private Bootstraper _bootstraper = new Bootstraper(gamepad1, gamepad2);
+    private Bootstraper _bootstraper = new Bootstraper();
     private Map<String, SystemBase> _systems;
 
     @Override
@@ -26,17 +26,14 @@ public class RobotGamePad extends LinearOpMode {
         telemetry.addData("Status", "Initialized");
         telemetry.update();
 
-        _systems = _bootstraper.Init(hardwareMap, telemetry);
+        _systems = _bootstraper.Init(gamepad1, gamepad2, hardwareMap, telemetry);
 
         waitForStart();
         runtime.reset();
 
         ExecutorService pool = Executors.newFixedThreadPool(3);
         for (String systemName : _systems.keySet()) {
-//            Thread thread = new Thread(system);
-//            thread.start();
             pool.submit(_systems.get(systemName));
-//            pool.execute();
         }
 
         // run until the end of the match (driver presses STOP)
@@ -44,5 +41,7 @@ public class RobotGamePad extends LinearOpMode {
             telemetry.addData("Status", "Run Time: " + runtime.toString());
             telemetry.update();
         }
+
+        pool.shutdown();
     }
 }

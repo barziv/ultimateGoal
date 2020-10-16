@@ -5,6 +5,8 @@ import com.qualcomm.robotcore.hardware.Gamepad;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 
+import org.firstinspires.ftc.robotcore.external.Func;
+import org.firstinspires.ftc.robotcore.external.Function;
 import org.firstinspires.ftc.robotcore.external.Telemetry;
 import org.firstinspires.ftc.teamcode.Abstract.SystemBase;
 import org.firstinspires.ftc.teamcode.Systems.TestSystem;
@@ -12,20 +14,21 @@ import org.firstinspires.ftc.teamcode.Systems.TestSystem2;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.concurrent.Callable;
 
 public class Bootstraper {
     private HardwareMap _robotHardware;
     private Gamepad _gamepad1;
     private Gamepad _gamepad2;
 
-    public Bootstraper(Gamepad gamepad1, Gamepad gamepad2) {
+    public Bootstraper() { }
+
+    public Map<String, SystemBase> Init(Gamepad gamepad1, Gamepad gamepad2, HardwareMap robotHardware, Telemetry telemetry) {
+        _robotHardware = robotHardware;
         _gamepad1 = gamepad1;
         _gamepad2 = gamepad2;
-    }
-
-    public Map<String, SystemBase> Init(HardwareMap robotHardware, Telemetry telemetry) {
-        _robotHardware = robotHardware;
         Map<String, SystemBase> systems = new HashMap<String, SystemBase>();
+
         systems.put("testSystem", CreateTestSystem(telemetry));
         systems.put("testSystem2", CreateTestSystem2());
         return systems;
