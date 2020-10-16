@@ -7,6 +7,7 @@ import com.qualcomm.robotcore.util.ElapsedTime;
 import com.qualcomm.robotcore.util.ThreadPool;
 
 import org.firstinspires.ftc.teamcode.Abstract.SystemBase;
+import org.firstinspires.ftc.teamcode.Systems.Systems;
 
 import java.util.Map;
 import java.util.concurrent.ExecutorService;
@@ -19,7 +20,7 @@ public class RobotGamePad extends LinearOpMode {
     private ElapsedTime runtime = new ElapsedTime();
 
     private Bootstraper _bootstraper = new Bootstraper();
-    private Map<String, SystemBase> _systems;
+    private Map<Systems, SystemBase> _systems;
 
     @Override
     public void runOpMode() {
@@ -32,7 +33,7 @@ public class RobotGamePad extends LinearOpMode {
         runtime.reset();
 
         ExecutorService pool = Executors.newFixedThreadPool(3);
-        for (String systemName : _systems.keySet()) {
+        for (Systems systemName : _systems.keySet()) {
             pool.submit(_systems.get(systemName));
         }
 

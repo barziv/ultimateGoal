@@ -9,6 +9,7 @@ import org.firstinspires.ftc.robotcore.external.Func;
 import org.firstinspires.ftc.robotcore.external.Function;
 import org.firstinspires.ftc.robotcore.external.Telemetry;
 import org.firstinspires.ftc.teamcode.Abstract.SystemBase;
+import org.firstinspires.ftc.teamcode.Systems.Systems;
 import org.firstinspires.ftc.teamcode.Systems.TestSystem;
 import org.firstinspires.ftc.teamcode.Systems.TestSystem2;
 
@@ -23,14 +24,14 @@ public class Bootstraper {
 
     public Bootstraper() { }
 
-    public Map<String, SystemBase> Init(Gamepad gamepad1, Gamepad gamepad2, HardwareMap robotHardware, Telemetry telemetry) {
+    public Map<Systems, SystemBase> Init(Gamepad gamepad1, Gamepad gamepad2, HardwareMap robotHardware, Telemetry telemetry) {
         _robotHardware = robotHardware;
         _gamepad1 = gamepad1;
         _gamepad2 = gamepad2;
-        Map<String, SystemBase> systems = new HashMap<String, SystemBase>();
+        Map<Systems, SystemBase> systems = new HashMap<Systems, SystemBase>();
 
-        systems.put("testSystem", CreateTestSystem(telemetry));
-        systems.put("testSystem2", CreateTestSystem2());
+        systems.put(Systems.DRIVE, CreateTestSystem(telemetry));
+        systems.put(Systems.TEST_SYSTEM, CreateTestSystem2());
         return systems;
     }
 
