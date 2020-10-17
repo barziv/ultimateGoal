@@ -48,10 +48,10 @@ public class DriveSystem extends SystemBase {
     }
 
     private void DriveForward(double power) {
-        _rightFront.setPower(-power);
-        _rightBack.setPower(-power);
-        _leftFront.setPower(power);
-        _leftBack.setPower(power);
+        _rightFront.setPower(power);
+        _rightBack.setPower(power);
+        _leftFront.setPower(-power);
+        _leftBack.setPower(-power);
     }
 
     private void DriveBackward(double power) {
