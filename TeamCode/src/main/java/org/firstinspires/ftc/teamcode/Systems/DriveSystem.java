@@ -27,23 +27,25 @@ public class DriveSystem extends SystemBase {
     public void run() {
         double levitationPower = 0.75;
 
-        if (_gamepad.right_trigger > 0) {
-            DriveForward(_gamepad.right_trigger);
-        }
-        else if (_gamepad.left_trigger > 0) {
-            DriveBackward(_gamepad.left_trigger);
-        }
-        else if (_gamepad.left_stick_x != 0) {
-            Turn(_gamepad.left_stick_x);
-        }
-        else if (_gamepad.dpad_right) {
-            RightLevitation(levitationPower);
-        }
-        else if (_gamepad.dpad_left) {
-            LeftLevitation(levitationPower);
-        }
-        else {
-            StopAllMotors();
+        while (true) {
+            if (_gamepad.right_trigger > 0) {
+                DriveForward(_gamepad.right_trigger);
+            }
+            else if (_gamepad.left_trigger > 0) {
+                DriveBackward(_gamepad.left_trigger);
+            }
+            else if (_gamepad.left_stick_x != 0) {
+                Turn(_gamepad.left_stick_x);
+            }
+            else if (_gamepad.dpad_right) {
+                RightLevitation(levitationPower);
+            }
+            else if (_gamepad.dpad_left) {
+                LeftLevitation(levitationPower);
+            }
+            else {
+                StopAllMotors();
+            }
         }
     }
 
